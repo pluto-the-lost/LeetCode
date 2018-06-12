@@ -26,17 +26,12 @@ class Solution:
         :type digits: List[int]
         :rtype: List[int]
         """
-        if digits[-1] != 9:
-            digits[-1] += 1
-            return(digits)
-        else:
-            digits[-1] = 0
-            carryCursor = -2
-            while(-carryCursor<=len(digits)):
-                if digits[carryCursor] != 9:
-                    digits[carryCursor] += 1
-                    return(digits)
-                else:
-                    digits[carryCursor] = 0
-                    carryCursor -= 1
-            return([1]+digits)
+        carryCursor = -1
+        while(-carryCursor<=len(digits)):
+            if digits[carryCursor] != 9:
+                digits[carryCursor] += 1
+                return(digits)
+            else:
+                digits[carryCursor] = 0
+                carryCursor -= 1
+        return([1]+digits)
