@@ -18,8 +18,8 @@ A solution set is:
   [-1, -1, 2]
 ]
 '''
-
-#python solution, NOT AC(TLE at test case 312)
+'''
+#solution v1.0, NOT AC(TLE at test case 312)
 class Solution:
     def twoSum(self, nums, goal):
         #nums = sorted(nums)
@@ -49,4 +49,35 @@ class Solution:
             if leftTwo != []:
                 for pair in leftTwo:
                     resList.append([num]+pair)
+        return(resList)
+'''
+
+#solution
+class Solution:
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        nums.sort()
+        smallestOne = [n for n in nums if n<=0]
+        #print(smallestOne)
+        resList = []
+        for idx in range(len(smallestOne)):
+            if idx > 0:
+                if smallestOne[idx] == smallestOne[idx-1]: continue
+            leftCursor, rightCursor = idx+1, len(nums)-1
+            while(leftCursor < rightCursor):
+                tempSum = nums[idx] + nums[leftCursor] + nums[rightCursor]
+                if tempSum > 0:
+                    rightCursor -= 1
+                elif tempSum < 0:
+                    leftCursor += 1
+                else:
+                    #print(leftCursor,rightCursor,idx)
+                    resList.append([nums[idx],nums[leftCursor],nums[rightCursor]])
+                    while(leftCursor<rightCursor and nums[leftCursor]==nums[leftCursor+1]): leftCursor += 1
+                    while(leftCursor<rightCursor and nums[rightCursor]==nums[rightCursor-1]): rightCursor -= 1
+                    leftCursor += 1
+                    rightCursor -= 1
         return(resList)
