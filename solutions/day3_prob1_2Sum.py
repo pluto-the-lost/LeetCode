@@ -34,3 +34,20 @@ class Solution:
                 theOtherIdx = bisect.bisect(largerPart,target-num)-1
                 if largerPart[theOtherIdx] == target-num: 
                     return([indices[idx],indices[theOtherIdx+idx+1]])
+                
+'''
+better solution: (beated 100% python3 submissions)
+class Solution:
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        seen = {}
+        for idx,num in enumerate(nums):
+            if target - num  in seen:
+                return(seen[target-num],idx)
+            else:
+                seen[num] = idx
+'''
