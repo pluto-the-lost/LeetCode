@@ -80,4 +80,21 @@ class Solution:
                 i -= 1
 
         return res
+        
+#shoter and fast (as fast as the one above)
+class Solution:
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        def permuteOne(InNums):
+            if len(InNums) == 1:
+                return [InNums]
+            res = []
+            for idx,num in enumerate(InNums):
+                permuteRes = [[num]+i for i in permuteOne(InNums[:idx]+InNums[idx+1:])]
+                res = res + permuteRes
+            return res
+        return permuteOne(nums)
 '''
