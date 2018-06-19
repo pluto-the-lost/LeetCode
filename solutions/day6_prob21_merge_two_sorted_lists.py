@@ -44,3 +44,26 @@ class Solution:
         elif l[1] != None:
             cursor.next = l[1]
         return newHead
+
+'''
+better solution: (faster and shorter)
+class Solution:
+    def mergeTwoLists(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        if l1 == None or l2 == None:
+            return l1 or l2
+        newHead = cursor = ListNode(0)
+        l = [l1,l2]
+        while(l[0] != None and l[1] != None):
+            minIdx = int(l[0].val>l[1].val)
+            cursor.next = l[minIdx]
+            cursor = cursor.next
+            l[minIdx] = l[minIdx].next
+        if l[0] != None or l[1] != None:
+            cursor.next = l[0] or l[1]
+        return newHead.next
+'''
